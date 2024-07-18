@@ -21,7 +21,7 @@ $sn = $_GET['sn'];
 
 // 在select.php中处理请求
 $sql = "SELECT * FROM `WSTRON`
-WHERE ((`sn` = '$sn'));";
+WHERE ((`sn` = '$sn'))";
 
 $result = $conn->query($sql);
 

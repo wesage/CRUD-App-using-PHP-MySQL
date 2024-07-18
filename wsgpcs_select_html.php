@@ -34,7 +34,7 @@ if (isset($_POST["submit"])) {
 		echo "Sn fields are required!";
 	} else {
 		// Construct SQL query to insert data into the 'userdetails' table
-		$sql = "SELECT * FROM `WSTRON` WHERE ((`sn` = '$sn'));";
+		$sql = "SELECT * FROM `WSTRON` WHERE ((`sn` = '$sn'))";
 		$result = $conn->query($sql);
 		// 显示数据
 		// $product = $_POST['product'];
