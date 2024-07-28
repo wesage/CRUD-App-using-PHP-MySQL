@@ -17,9 +17,11 @@ if ($conn->connect_error) {
 
 // $sql = "INSERT INTO users (name, age) VALUES ('$name', '$age')";
 
+$who = $_POST['who'];
+$table = $_POST['table'];
 $sn = $_POST['sn'];
 
-$sql = "DELETE FROM `WSTRON`
+$sql = "DELETE FROM $table
 WHERE ((`sn` = '$sn'));";
 
 

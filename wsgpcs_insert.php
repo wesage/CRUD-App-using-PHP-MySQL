@@ -12,6 +12,9 @@ if ($conn->connect_error) {
 // $name = $_POST['name'];
 // $age = $_POST['age'];
 // $sql = "INSERT INTO users (name, age) VALUES ('$name', '$age')";
+
+$who = $_POST['who'];
+$table = $_POST['table'];
 $product = $_POST['product'];
 $cfg = $_POST['cfg'];
 $sn = $_POST['sn'];
@@ -20,11 +23,11 @@ $hardware = $_POST['hardware'];
 $model = $_POST['model'];
 $step = $_POST['step'];
 $date = $_POST['date'];
-$sql = "INSERT INTO `WSTRON` (`sn`) VALUES ('$sn')";
-$sql_smt = "INSERT INTO `WSTRON` (`product`, `cfg`, `sn`, `company`, `hardware`, `model`, `lb_date_smt`)
+$sql = "INSERT INTO $table (`sn`) VALUES ('$sn')";
+$sql_smt = "INSERT INTO $table (`product`, `cfg`, `sn`, `company`, `hardware`, `model`, `lb_date_smt`)
 SELECT $product, $cfg, '$sn', $company, $hardware, $model, '$date'
 WHERE NOT EXISTS(
-SELECT 1 FROM `WSTRON` WHERE ((`sn` = '$sn'))
+SELECT 1 FROM $table WHERE ((`sn` = '$sn'))
 )";
 if($step == 'SMT') {
 	echo "step:" . $step;

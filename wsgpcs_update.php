@@ -12,8 +12,8 @@ if ($conn->connect_error) {
 // $name = $_POST['name'];
 // $age = $_POST['age'];
 // $sql = "INSERT INTO users (name, age) VALUES ('$name', '$age')";
-
 $who = $_POST['who'];
+$table = $_POST['table'];
 $product = $_POST['product'];
 $UUID = $_POST['UUID'];
 $cfg = $_POST['cfg'];
@@ -30,7 +30,7 @@ $lb_date_out = $_POST['lb_date_out'];
 $express_send = $_POST['express_send'];
 $step = $_POST['step'];
 $date = $_POST['date'];
-$sql = "UPDATE `WSTRON` SET
+$sql = "UPDATE $table SET
 `product` = '$product',
 `UUID` = '$UUID',
 `cfg` = '$cfg',
@@ -45,20 +45,20 @@ $sql = "UPDATE `WSTRON` SET
 `lb_date_out` = '$lb_date_out',
 `express_send` = '$express_send'
 WHERE ((`sn` = '$sn'))";
-$sql_lb_date_smt = "UPDATE `WSTRON` SET
+$sql_lb_date_smt = "UPDATE $table SET
 `lb_date_smt` = '$date'
 WHERE ((`sn` = '$sn'))";
-$sql_lb_date_asm = "UPDATE `WSTRON` SET
+$sql_lb_date_asm = "UPDATE $table SET
 `lb_date_asm` = '$date'
 WHERE ((`sn` = '$sn'))";
-$sql_lb_date_pack = "UPDATE `WSTRON` SET
+$sql_lb_date_pack = "UPDATE $table SET
 `lb_date_pack` = '$date'
 WHERE ((`sn` = '$sn'))";
-$sql_lb_date_out = "UPDATE `WSTRON` SET
+$sql_lb_date_out = "UPDATE $table SET
 `lb_date_out` = '$date'
 WHERE ((`sn` = '$sn'))";
 if($who == 'cmm') {
-    echo "who:" . $who;
+	echo "who:" . $who;
 	if($step == 'S') {
 		echo "step:" . $step;
 		$sql = $sql_lb_date_smt;

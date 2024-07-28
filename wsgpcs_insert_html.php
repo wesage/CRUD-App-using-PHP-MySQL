@@ -17,9 +17,11 @@ if ($conn->connect_error) {
 
 // $sql = "INSERT INTO users (name, age) VALUES ('$name', '$age')";
 
+$who = $_POST['who'];
+$table = $_POST['table'];
 $sn = $_POST['sn'];
 
-$sql = "INSERT INTO `WSTRON` (`sn`) VALUES ('$sn')";
+$sql = "INSERT INTO $table (`sn`) VALUES ('$sn')";
 
 
 if ($conn->query($sql) === TRUE) {
@@ -32,7 +34,7 @@ if ($conn->query($sql) === TRUE) {
 if (isset($_POST["submit"])) {
 $sn = $_POST['sn'];
 
-$sql = "INSERT INTO `WSTRON` (`sn`) VALUES ('$sn')";
+$sql = "INSERT INTO $table (`sn`) VALUES ('$sn')";
 
 
 if ($conn->query($sql) === TRUE) {

@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 // $sql = "INSERT INTO users (name, age) VALUES ('$name', '$age')";
 /* $sn = $_GET['sn'];
 // 在select.php中处理请求
-$sql = "SELECT * FROM `WSTRON`
+$sql = "SELECT * FROM $table
 WHERE ((`sn` = '$sn'));";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -26,15 +26,21 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 结果";
 } */
+
+$who = $_POST['who'];
+$table = $_POST['table'];
+//$table = 'IVT';
+
 // Check if the form is submitted using the POST method
 if (isset($_POST["submit"])) {
+    $table = $_POST['brand'];
 	$sn = $_POST['sn'];
 	if (empty($sn)) {
 		//echo "All fields are required";
 		echo "Sn fields are required!";
 	} else {
 		// Construct SQL query to insert data into the 'userdetails' table
-		$sql = "SELECT * FROM `WSTRON` WHERE ((`sn` = '$sn'))";
+		$sql = "SELECT * FROM $table WHERE ((`sn` = '$sn'))";
 		$result = $conn->query($sql);
 		// 显示数据
 		// $product = $_POST['product'];
@@ -111,6 +117,12 @@ $conn->close();
       </div>
       <!-- Form with POST method to submit data to PHP -->
       <form method="post">
+        <div class="mb-3">
+          <label for="name" class="form-label">
+            Brand:
+          </label>
+          <input type="name" class="form-control" name="brand" id="brand" placeholder="Enter Your brand">
+        </div>
         <div class="mb-3">
           <label for="name" class="form-label">
             SN:
