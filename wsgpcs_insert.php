@@ -12,7 +12,6 @@ if ($conn->connect_error) {
 // $name = $_POST['name'];
 // $age = $_POST['age'];
 // $sql = "INSERT INTO users (name, age) VALUES ('$name', '$age')";
-
 $who = $_POST['who'];
 $table = $_POST['table'];
 $product = $_POST['product'];
@@ -23,12 +22,21 @@ $hardware = $_POST['hardware'];
 $model = $_POST['model'];
 $step = $_POST['step'];
 $date = $_POST['date'];
+$snimeimeid = $_POST['snimeimeid'];
 $sql = "INSERT INTO $table (`sn`) VALUES ('$sn')";
-$sql_smt = "INSERT INTO $table (`product`, `cfg`, `sn`, `company`, `hardware`, `model`, `lb_date_smt`)
+if($table == 'MTK') {
+	$sql_smt = "INSERT INTO $table (`product`, `cfg`, `sn`, `company`, `hardware`, `model`, `lb_date_smt`, `snimeimeid`)
+SELECT $product, $cfg, '$sn', $company, $hardware, $model, '$date', '$snimeimeid'
+WHERE NOT EXISTS(
+SELECT 1 FROM $table WHERE ((`sn` = '$sn'))
+)";
+} else {
+	$sql_smt = "INSERT INTO $table (`product`, `cfg`, `sn`, `company`, `hardware`, `model`, `lb_date_smt`)
 SELECT $product, $cfg, '$sn', $company, $hardware, $model, '$date'
 WHERE NOT EXISTS(
 SELECT 1 FROM $table WHERE ((`sn` = '$sn'))
 )";
+}
 if($step == 'SMT') {
 	echo "step:" . $step;
 	$sql = $sql_smt;
