@@ -19,9 +19,13 @@ $UUID = $_POST['UUID'];
 $cfg = $_POST['cfg'];
 $sn = $_POST['sn'];
 $company = $_POST['company'];
+$oem = $_POST['oem'];
+// 录入时已输入,UUID更新暂时不用
 $CHANNEL = $_POST['CHANNEL'];
-$hardware = $_POST['hardware'];
+$hardware = $_POST['hardware'].'_'.$_POST['software'].'_'.$_POST['test'];
+// 录入时已输入,UUID更新需要更新
 $model = $_POST['model'];
+// 录入时已输入,UUID更新需要更新
 $customer = $_POST['customer'];
 $lb_date_smt = $_POST['lb_date_smt'];
 $lb_date_asm = $_POST['lb_date_asm'];
@@ -30,6 +34,8 @@ $lb_date_out = $_POST['lb_date_out'];
 $express_send = $_POST['express_send'];
 $step = $_POST['step'];
 $date = $_POST['date'];
+//T5系统时间,暂时无用
+$uuiddate = $_POST['uuiddate'];
 $sql = "UPDATE $table SET
 `product` = '$product',
 `UUID` = '$UUID',
@@ -57,6 +63,11 @@ WHERE ((`sn` = '$sn'))";
 $sql_lb_date_out = "UPDATE $table SET
 `lb_date_out` = '$date'
 WHERE ((`sn` = '$sn'))";
+$sql_uuid = "UPDATE $table SET
+`UUID` = '$UUID',
+`cfg` = '$hardware',
+`model` = '$model'
+WHERE ((`sn` = '$sn'))";
 if($who == 'cmm') {
 	echo "who:" . $who;
 	if($step == 'S') {
@@ -71,6 +82,9 @@ if($who == 'cmm') {
 	} elseif($step == 'O') {
 		echo "step:" . $step;
 		$sql = $sql_lb_date_out;
+	} elseif($step == 'UUID') {
+		echo "step:" . $step;
+		$sql = $sql_uuid;
 	}
 } elseif($who == 'bosszz') {
 	echo "who:" . $who;
