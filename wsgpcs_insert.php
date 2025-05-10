@@ -24,6 +24,7 @@ $step = $_POST['step'];
 $date = $_POST['date'];
 $snimeimeid = $_POST['snimeimeid'];
 $sql = "INSERT INTO $table (`sn`) VALUES ('$sn')";
+//SELECT 1 FROM $table WHERE ((`sn` = '$sn' AND `model` = $model)),'$sn'和$model变量类型不一样
 if($table == 'MTK') {
 	$sql_smt = "INSERT INTO $table (`product`, `cfg`, `sn`, `company`, `hardware`, `model`, `lb_date_smt`, `snimeimeid`)
 SELECT $product, $cfg, '$sn', $company, $hardware, $model, '$date', '$snimeimeid'
@@ -34,7 +35,7 @@ SELECT 1 FROM $table WHERE ((`sn` = '$sn'))
 	$sql_smt = "INSERT INTO $table (`product`, `cfg`, `sn`, `company`, `hardware`, `model`, `lb_date_smt`)
 SELECT $product, $cfg, '$sn', $company, $hardware, $model, '$date'
 WHERE NOT EXISTS(
-SELECT 1 FROM $table WHERE ((`sn` = '$sn'))
+SELECT 1 FROM $table WHERE ((`sn` = '$sn' AND `model` = $model))
 )";
 }
 if($step == 'SMT') {
