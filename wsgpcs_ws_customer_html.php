@@ -43,7 +43,7 @@ function getCustomers($conn) {
 	return $customers;
 }
 $customers = getCustomers($conn);
-// 从数据库中获取客户数据
+// 从数据库中获取model数据
 function getModels($conn) {
 	$sql = "SELECT DISTINCT model FROM WSTRON_Model";
 	$stmt = $conn->prepare($sql);
