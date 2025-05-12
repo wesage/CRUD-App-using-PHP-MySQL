@@ -107,6 +107,7 @@ WHERE ((`sn` = '$sn'))";
 				echo "<br>更新成功!";
 			} else {
 				echo "<br>未找到匹配的序列号，更新未执行。";
+				echo "<br>更新内容和已有内容一样,也会提示,更新未执行,显示有记录内容即可。";
 			}
 		} else {
 			echo "<br>Error: " . $sql_update . "<br>" . $conn->error;
