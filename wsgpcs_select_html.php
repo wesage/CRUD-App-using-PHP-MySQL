@@ -127,11 +127,11 @@ $conn->close();
                         Brand:
                     </label>
                     <select id="brand" name="brand">
-                        <option value="IVT">
-                            IVT
-                        </option>
                         <option value="WSTRON">
                             WSTRON
+                        </option>
+                        <option value="IVT">
+                            IVT
                         </option>
                     </select>
                 </div>
