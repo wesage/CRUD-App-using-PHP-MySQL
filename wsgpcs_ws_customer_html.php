@@ -231,7 +231,7 @@ $conn->close();
                         物流单号:
                     </label>
                     <input type="name" class="form-control" name="express_send" id="express_send"
-                    placeholder="输入物流单号" autocomplete="off">
+                    placeholder="输入物流单号" autocomplete="off" value="顺丰_客户安排">
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">
